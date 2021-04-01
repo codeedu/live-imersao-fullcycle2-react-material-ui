@@ -1,17 +1,39 @@
-import React, { FormEvent, useRef } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import React, { useState } from "react";
 import { Form } from "./components/Form";
 import { Title } from "./components/Title";
+import {
+  Container,
+  CssBaseline,
+  Grid,
+  MuiThemeProvider,
+} from "@material-ui/core";
+import theme from "./theme";
+import { UsersList } from "./components/UsersList";
+import { UsersProvider } from "./components/UsersProvider";
 
+//Context API
+
+//Redux
+//react-hook-form - yup - redux saga
 
 function App() {
   return (
-    <div>
-      <Title onClick={() => alert('Primeiro')}>Iniciando com React</Title>
-      <Title onClick={() => alert('Segundo')} color="green">Iniciando com React</Title>
-      <Form />
-    </div>
+    <UsersProvider>
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
+        <Container>
+          <Title>Iniciando com React</Title>
+          <Grid container>
+            <Grid item xs={7}>
+              <Form />
+            </Grid>
+            <Grid item xs={5}>
+              <UsersList />
+            </Grid>
+          </Grid>
+        </Container>
+      </MuiThemeProvider>
+    </UsersProvider>
   );
 }
 
